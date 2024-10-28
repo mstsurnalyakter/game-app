@@ -1,50 +1,105 @@
 import React, { useState, useEffect } from "react";
 import { fetchGames } from "../../services/api";
-import Header from "../../components/Header";
 import Banner from "../../components/Banner";
 import SearchBar from "../../components/SearchBar";
+import GameList from "../../components/GameList";
+import Categories from "../../components/Categories";
+import Header from "../../components/Header";
+
+interface Game {
+  id: string;
+  name: string;
+  img: string;
+  provider: string;
+  category: string;
+}
 
 const HomePage: React.FC = () => {
-  const [games, setGames] = useState([]);
-  const [filteredGames, setFilteredGames] = useState([]);
+  const [games, setGames] = useState<Game[]>([]);
+  const [filteredGames, setFilteredGames] = useState<Game[]>([]);
+  const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
+  const [showSearchBar, setShowSearchBar] = useState(false);
+  const [searchQuery, setSearchQuery] = useState<string>('');
+  const [favorites, setFavorites] = useState<string[]>([]);
 
   useEffect(() => {
     const getGames = async () => {
-      const data: any = await fetchGames();
+      const data: Game[] = await fetchGames();
       setGames(data);
       setFilteredGames(data);
     };
     getGames();
   }, []);
 
+  const toggleSearchBar = () => {
+    setShowSearchBar((prev) => !prev);
+  };
+
+  useEffect(() => {
+    let result = games;
+
+    if (selectedCategory) {
+      result = result.filter((game) => game.category === selectedCategory);
+    }
+
+    if (searchQuery) {
+      result = result.filter((game) =>
+        game.name.toLowerCase().includes(searchQuery.toLowerCase())
+      );
+    }
+
+    setFilteredGames(result);
+  }, [selectedCategory, searchQuery, games]);
+
+  const handleCategorySelect = (category: string) => {
+    setSelectedCategory(prevCategory => (prevCategory === category ? null : category));
+    setSearchQuery('');
+  };
+
   const handleSearch = (query: string) => {
-    const results = games.filter((game) =>
-      game.name.toLowerCase().includes(query.toLowerCase())
+    setSearchQuery(query);
+  };
+
+  const toggleFavorite = (id: string) => {
+    setFavorites((prevFavorites) =>
+      prevFavorites.includes(id)
+        ? prevFavorites.filter((favoriteId) => favoriteId !== id)
+        : [...prevFavorites, id]
     );
-    setFilteredGames(results);
   };
 
   return (
-    <div className="px-20 space-y-10">
+    <div className="mx-auto max-w-7xl px-7 lg:px-2 space-y-11">
       <Header />
-      <Banner />
-      <div className="flex gap-2 items-center">
-        <img
-          src="https://i.postimg.cc/d0nn2nvP/bell-svgrepo-com-1.png"
-          alt=""
-          className="w-7"
+
+      <div className="space-y-11">
+        <Banner />
+
+        <div className="flex items-center  ">
+          <div className="flex justify-end mb-4">
+            <button
+              onClick={toggleSearchBar}
+              className="text-lg sm:text-xl p-2 flex flex-col"
+            >
+              <img src="https://i.postimg.cc/pXWj8jkz/search.png" alt="" />
+              SEARCH
+            </button>
+          </div>
+
+          <Categories
+            selectedCategory={selectedCategory}
+            onCategorySelect={handleCategorySelect}
+          />
+        </div>
+        {showSearchBar && <SearchBar onSearch={handleSearch} />}
+
+        <GameList
+          games={filteredGames}
+          favorites={favorites}
+          onToggleFavorite={toggleFavorite}
         />
-        <h2 className="text-2xl text-[#00A6FF]">
-          ¡FELICIDADES artxxxxipa! GANADOR DESTACADO{" "}
-        </h2>
-        <SearchBar onSearch={handleSearch} />
       </div>
     </div>
-    // <div>
-    //   <Banner />
-    //   <SearchBar onSearch={handleSearch} />
-    //   <GameList games={filteredGames} />
-    // </div>
   );
 };
 
