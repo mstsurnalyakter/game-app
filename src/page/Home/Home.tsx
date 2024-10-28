@@ -79,12 +79,13 @@ const HomePage: React.FC = () => {
           <div className="flex justify-end mb-4">
             <button
               onClick={toggleSearchBar}
-              className="text-lg sm:text-xl p-2 flex flex-col"
+              className="text-lg sm:text-xl items-center p-2 flex flex-col"
             >
               <img src="https://i.postimg.cc/pXWj8jkz/search.png" alt="" />
-              SEARCH
+              <span> SEARCH</span>
             </button>
           </div>
+          <div className="border-l-2 border-black h-10"></div>
 
           <Categories
             selectedCategory={selectedCategory}

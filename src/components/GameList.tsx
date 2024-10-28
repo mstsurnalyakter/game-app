@@ -70,7 +70,7 @@ const GameList: React.FC<GameListProps> = ({
   onToggleFavorite,
 }) => {
   return (
-    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+    <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
       {games.map((game) => (
         <div
           key={game.id}
@@ -84,7 +84,7 @@ const GameList: React.FC<GameListProps> = ({
             />
           </div>
           <h3 className="text-sm sm:text-lg font-semibold text-center">
-            {game.name}
+            {game.name} | {game.category}
           </h3>
           <button
             onClick={() => onToggleFavorite(game.id)}
