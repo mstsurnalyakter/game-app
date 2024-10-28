@@ -36,13 +36,13 @@ export const fetchGames = () =>
       {
         id: "106",
         name: "ANACONDA WILD 2 POWERPLAY JACKPOT",
-        img: "https://i.postimg.cc/Z5Vks8xZ/xtreme.png",
+        img: "https://i.postimg.cc/R0kgghy4/jackpot.png",
         category: "LIVE",
       },
       {
         id: "107",
         name: "MAYA JACKPOT",
-        img: "https://i.postimg.cc/R0kgghy4/jackpot.png",
+        img: "https://i.postimg.cc/d0PNJnmG/maya.png",
         category: "SLOTS",
       },
       {
@@ -60,8 +60,20 @@ export const fetchGames = () =>
       {
         id: "110",
         name: "PRIDE OF PERSIA EMPIRE",
-        img: "https://i.postimg.cc/0Q9w5qJ7/inca.png",
+        img: "https://i.postimg.cc/4ymQ6hQJ/pride.png",
         category: "JACKPOTS",
+      },
+      {
+        id: "111",
+        name: "SUGAR RUSH",
+        img: "https://i.postimg.cc/j2wywYR2/vs20cm-webp.png",
+        category: "JACKPOTS",
+      },
+      {
+        id: "112",
+        name: "AZTECA",
+        img: "https://i.postimg.cc/SQ360RGM/azteca.png",
+        category: "SLOTS",
       },
     ];
     setTimeout(() => resolve(games), 3000);
