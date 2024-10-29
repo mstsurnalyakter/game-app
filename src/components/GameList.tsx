@@ -20,7 +20,7 @@ const GameList: React.FC<GameListProps> = ({
   onToggleFavorite,
 }) => {
   return (
-    <div className="grid grid-cols-3 gap-4">
+    <div className="grid grid-cols-3 gap-4 mb-2">
       {games.map((game) => (
         <div
           key={game.id}
@@ -38,7 +38,7 @@ const GameList: React.FC<GameListProps> = ({
           </h3>
           <button
             onClick={() => onToggleFavorite(game.id)}
-            className={`absolute text-6xl top-4 right-7  ${
+            className={`absolute text-xl md:text-6xl md:top-4 top-1 right-1 md:right-7  ${
               favorites.includes(game.id) ? "text-yellow-400" : "text-gray-400"
             }`}
           >

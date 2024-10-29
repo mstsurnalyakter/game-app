@@ -28,7 +28,7 @@ const footerItems: FooterItem[] = [
 
 const Footer: React.FC = () => {
   return (
-    <div className="fixed bottom-0 w-full bg-white py-2 border-t border-gray-200 flex justify-around items-center text-xs sm:text-sm text-gray-500">
+    <div className="fixed  bottom-0 w-full bg-white py-2 border-t border-gray-200 flex justify-around items-center text-xs sm:text-sm text-gray-500">
       {footerItems.map((item, index) => (
         <div
           key={index}
