@@ -1,53 +1,3 @@
-// import React from "react";
-
-// interface Game {
-//   id: string;
-//   name: string;
-//   img: string;
-//   provider: string;
-//   category: string;
-// }
-
-// interface GameListProps {
-//   games: Game[];
-//   favorites: string[];
-//   onToggleFavorite: (id: string) => void;
-// }
-
-// const GameList: React.FC<GameListProps> = ({
-//   games,
-//   favorites,
-//   onToggleFavorite,
-// }) => {
-//   return (
-//     <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-//       {games.map((game) => (
-//         <div
-//           key={game.id}
-//           className="bg-white p-2 sm:p-4 rounded-lg shadow-md relative"
-//         >
-//           <img
-//             src={game.img}
-//             alt={game.name}
-//             className="w-full h-56 sm:h-32 lg:h-48 object-cover rounded-lg mb-2"
-//           />
-//           <h3 className="text-sm sm:text-lg font-semibold">{game.name}</h3>
-//           <button
-//             onClick={() => onToggleFavorite(game.id)}
-//             className={`absolute top-4 right-5 text-xl ${
-//               favorites.includes(game.id) ? "text-yellow-400" : "text-gray-400"
-//             }`}
-//           >
-//             ★
-//           </button>
-//         </div>
-//       ))}
-//     </div>
-//   );
-// };
-
-// export default GameList;
-
 import React from "react";
 
 interface Game {
@@ -70,7 +20,7 @@ const GameList: React.FC<GameListProps> = ({
   onToggleFavorite,
 }) => {
   return (
-    <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
+    <div className="grid grid-cols-3 gap-4">
       {games.map((game) => (
         <div
           key={game.id}
